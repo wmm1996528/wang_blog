@@ -1,0 +1,38 @@
+{% include "head.html" %}
+
+
+<div class="uk-container uk-container-medium">
+        <!-- content -->
+        <div class="uk-grid">
+            <div class="uk-width-expand">
+                {% for data in blog_data %}
+                <article class="uk-article">
+                    <h4><a class="uk-link-heading" href="/blog/0015450832403349be6b9380c744cfe95672cb2f61817ab000">{{data['title']}}</a></h4>
+                    <p class="uk-article-meta">发表于1天前</p>
+                    <p>{{data['content']}}</p>
+
+                </article>
+                <hr>
+                {% end %}
+                <!--<ul class="uk-pagination uk-flex-center uk-margin-medium-top uk-margin-large-bottom">-->
+
+                    <!--<li class="uk-disabled"><a href="#"><span uk-pagination-previous></span></a></li>-->
+
+                    <!--<li class="uk-active"><span>1</span></li>-->
+
+                    <!--<li><a href="?page=2"><span uk-pagination-next></span></a></li>-->
+
+                <!--</ul>-->
+
+            </div>
+        </div>
+
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        <!-- // content -->
+
+    </div>
+
+
+{% include "foot.html" %}

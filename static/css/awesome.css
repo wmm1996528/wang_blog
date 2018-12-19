@@ -1,0 +1,26 @@
+/*
+ * custom css
+ */
+a:hover, a:active {
+    text-decoration: none;
+}
+
+#vm {
+    display: none;
+}
+#loading {
+    margin-bottom: 15px;
+}
+#error {
+    display: none;
+    margin-bottom: 15px;
+}
+html{
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
