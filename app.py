@@ -20,9 +20,27 @@ class IndexHandler(tornado.web.RequestHandler):
 		self.render('index.html', blog_data=blog_data)
 
 
+class BlogHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('blog.html')
+
+
+class LoginHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('login.html')
+
+	def post(self, *args, **kwargs):
+		print(self.request.remote_ip)
+		user = self.get_argument('user')
+		password = self.get_argument('password')
+		if user == '123' and password == '123':
+			self.render('')
+
 if __name__ == '__main__':
 	app = tornado.web.Application(handlers=[
-		(r'/', IndexHandler)
+		(r'/', IndexHandler),
+		(r'/blog/', BlogHandler),
+		(r'/login', LoginHandler)
 	],
 		template_path=os.path.join(os.path.dirname(__file__), 'templates'),
 		static_path=os.path.join(os.path.dirname(__file__), "static"),
