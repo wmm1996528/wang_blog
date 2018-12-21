@@ -34,16 +34,29 @@ class LoginHandler(tornado.web.RequestHandler):
 		user = self.get_argument('user')
 		password = self.get_argument('password')
 		if user == '123' and password == '123':
-			self.render('')
+			self.set_secure_cookie('user', user)
+			self.redirect('admin.html')
+
+
+class AdminHandler(tornado.web.RequestHandler):
+	@tornado.web.authenticated
+	def get(self):
+		self.render('admin.html')
 
 if __name__ == '__main__':
+	settings = {
+		"cookie_secret": "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
+		"login_url": "/login"
+	}
 	app = tornado.web.Application(handlers=[
 		(r'/', IndexHandler),
 		(r'/blog/', BlogHandler),
-		(r'/login', LoginHandler)
+		(r'/login', LoginHandler),
+		(r'/admin', AdminHandler)
 	],
 		template_path=os.path.join(os.path.dirname(__file__), 'templates'),
 		static_path=os.path.join(os.path.dirname(__file__), "static"),
+		**settings
 	)
 	http_server = tornado.httpserver.HTTPServer(app)
 	http_server.listen(8000)
